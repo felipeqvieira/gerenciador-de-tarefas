@@ -30,3 +30,6 @@ int busca_inteiro (lista_t *l, char* c);
 
 /* Informa o tamanho da lista */
 int tamanho_lista (lista_t *l);
+
+/* Printa os elementos da lista*/
+void printa_lista(lista_t *l);

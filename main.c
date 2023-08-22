@@ -15,6 +15,9 @@ int main(int argc, char **argv){
         printf("Gerenciador inexistente. Criando um novo...\n");
         arquivo_tarefas = fopen(nome_arquivo, "w");
     }
+    else{
+        ler_arquivo(arquivo_tarefas);
+    }
 
     while(saida != 0){
 

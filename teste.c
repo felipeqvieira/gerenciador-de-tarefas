@@ -2,9 +2,23 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-#include "lista.h"
 
 #define STRING_SIZE 1024
+
+/* struct lista*/
+typedef struct nodo_lista{
+
+    struct nodo_lista *prox;
+    char* dado;
+
+}nodo_lista_t;
+
+typedef struct lista{
+
+    nodo_lista_t *Primeiro;
+    int tamanho;
+
+}lista_t;
 
 /* funcao que cria lista */
 lista_t *cria_lista(){
@@ -24,25 +38,6 @@ lista_t *cria_lista(){
     l->tamanho = 0;
 
     return l;
-}
-
-void printa_lista(lista_t *l){
-
-    /* verifica se ha elementos */
-    if (l->Primeiro != NULL){
-        nodo_lista_t * aux;
-        aux = l->Primeiro;
-        
-        /* se tiver, vai varrendo e dando free com aux */
-        while (aux != NULL){
-            
-            printf("%s\n", aux->dado);
-
-            aux = aux->prox;
-
-        }
-    }
-
 }
 
 /* funcao que destroi a lista */
@@ -171,4 +166,74 @@ int tamanho_lista(lista_t *l){
     
     return l->tamanho;
 
+}
+
+void printa_lista(lista_t *l){
+
+    /* verifica se ha elementos */
+    if (l->Primeiro != NULL){
+        nodo_lista_t * aux;
+        aux = l->Primeiro;
+        
+        /* se tiver, vai varrendo e dando free com aux */
+        while (aux != NULL){
+            
+            printf("%s\n", aux->dado);
+
+            aux = aux->prox;
+
+        }
+    }
+
+}
+
+int main () {
+
+   lista_t * l = cria_lista();
+
+   if (l != NULL)
+      printf("Lista criada com sucesso!\n");
+   else 
+      printf("Erro ao criar a lista!\n");
+
+   adiciona_ordem_lista(l, "fazer almoco\n");
+
+   int tamanho = tamanho_lista(l);
+
+   if(tamanho != 1)
+      printf("Erro ao adicionar item na lista!\n");
+   else 
+      printf("Tamanho da lista: %d\n", tamanho);
+
+   adiciona_ordem_lista(l, "tomar banho\n");
+
+   adiciona_ordem_lista(l, "ir para escola\n");
+
+   adiciona_ordem_lista(l, "dormir\n");
+
+   tamanho = tamanho_lista(l);
+
+   if(tamanho != 4)
+      printf("Erro ao adicionar item na lista!\n");
+   else 
+      printf("Tamanho da lista: %d\n", tamanho);
+
+   int busca;
+
+   busca = busca_inteiro(l, "tomar banho");
+
+   if(busca != 1)
+      printf("Erro ao encontrar item na lista!\n");
+   else 
+      printf("Item encontrado!\n");
+
+   printa_lista(l);
+
+   if (destroi_lista(l) != NULL)
+      printf("Erro ao destruir lista!\n");
+   else
+      printf("Lista destruida com sucesso!\n");
+   
+   
+   
 }
