@@ -1,0 +1,1 @@
+void ler_arquivo(FILE *arq, lista_t* l);

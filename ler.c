@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <sys/types.h>
+#include <unistd.h>
 #include "lista.h"
-#include "adiciona.h"
 
 #define CARACTERES 1024
 
@@ -15,7 +16,6 @@ void ler_arquivo(FILE *arq, lista_t* l){
         adiciona_ordem_lista(l, buffer);
 
     free(buffer);
-    fclose(file);
-    return 0;
+    fclose(arq);
 
 }

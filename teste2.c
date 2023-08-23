@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "lista.h"
 
 char *inputString(FILE* fp, size_t size){
 //The size is extended by the input with the value of the provisional
@@ -21,17 +20,13 @@ char *inputString(FILE* fp, size_t size){
     return realloc(str, sizeof(*str)*len);
 }
 
-void adiciona_tarefas(FILE* arquivo_tarefas, lista_t* l){
-
-    printf("Escreva a tarefa: \n");
-    
+int main(void){
     char *m;
 
+    printf("input string : ");
     m = inputString(stdin, 10);
-
-    adiciona_ordem_lista(l, m);
+    printf("%s\n", m);
 
     free(m);
-
+    return 0;
 }
-

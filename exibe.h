@@ -1,0 +1,1 @@
+void exibir_tarefas(lista_t *l);

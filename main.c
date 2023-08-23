@@ -1,8 +1,21 @@
 #include <stdio.h>
+#include "lista.h"
+#include "adiciona.h"
+#include "conclui.h"
+#include "desfaz.h"
+#include "remove.h"
+#include "exibe.h"
 
 #define STRING_SIZE 1024
 
 int main(int argc, char **argv){
+
+    lista_t *l = cria_lista();
+
+    if(l == NULL){
+        printf("Erro ao criar a lista!\n");
+        return 0;
+    }
 
     int saida = -1;
     int option = -1;
@@ -21,6 +34,15 @@ int main(int argc, char **argv){
 
     while(saida != 0){
 
+        printf("\n\n===========================================\n\n");
+        printf("0. Sair\n");
+        printf("1. Adicionar Tarefa\n");
+        printf("2. Remover Tarefa\n");
+        printf("3. Marcar Tarefa como Concluida\n");
+        printf("4. Desmarcar Tarefa como Concluida\n");
+        printf("5. Exibir Tarefas\n");
+        printf("\n\n===========================================\n\n");
+
         scanf("%d", option);
 
         switch(option){
@@ -31,6 +53,7 @@ int main(int argc, char **argv){
         
             case '1':
                 //adiciona
+                adiciona_tarefas(arquivo_tarefas, l);
                 break;
             
             case '2':
@@ -47,10 +70,12 @@ int main(int argc, char **argv){
 
             case '5':
                 //exibir 
+                exibir_tarefas(l);
                 break;
 
         }
 
     }
 
+    return 1;
 }
