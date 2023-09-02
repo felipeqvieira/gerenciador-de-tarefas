@@ -83,6 +83,7 @@ int adiciona_ordem_lista(lista_t *l, char* elemento){
     /* aloca novo nodo */
     novo = malloc(sizeof(nodo_lista_t));
     novo->dado = malloc(sizeof(STRING_SIZE));
+    novo->concluido = malloc(sizeof(int));
 
     /* verificacao */
     if (novo == NULL){
@@ -92,6 +93,8 @@ int adiciona_ordem_lista(lista_t *l, char* elemento){
 
     /* nodo recebe o elemento */
     novo->dado = elemento;
+
+    novo->concluido = 0;
 
     /* indica prox como null*/
     novo->prox = NULL;
@@ -136,7 +139,7 @@ int adiciona_ordem_lista(lista_t *l, char* elemento){
 }
 
 /* funcao para buscar numero na lista */
-int busca_inteiro (lista_t *l, char* c){
+int busca_string (lista_t *l, char* c){
 
     /* verifica se ha elementos*/
     if (l->Primeiro != NULL){

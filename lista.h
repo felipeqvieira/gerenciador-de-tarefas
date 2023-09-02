@@ -5,6 +5,7 @@ typedef struct nodo_lista{
 
     struct nodo_lista *prox;
     char* dado;
+    int concluido;
 
 }nodo_lista_t;
 
@@ -26,7 +27,7 @@ lista_t * destroi_lista (lista_t *l);
 int adiciona_ordem_lista (lista_t *l, char* elemento);
 
 /* verifica se ha um inteiro na lista */
-int busca_inteiro (lista_t *l, char* c);
+int busca_string (lista_t *l, char* c);
 
 /* Informa o tamanho da lista */
 int tamanho_lista (lista_t *l);
