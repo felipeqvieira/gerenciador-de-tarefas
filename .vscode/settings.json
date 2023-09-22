@@ -61,7 +61,8 @@
     "adiciona.h": "c",
     "ler.h": "c",
     "stdlib.h": "c",
-    "types.h": "c"
+    "types.h": "c",
+    "lista.h": "c"
   },
   "C_Cpp.errorSquiggles": "enabled"
 }

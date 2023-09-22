@@ -2,11 +2,10 @@
 #include <stdlib.h>
 #include <sys/types.h>
 #include <unistd.h>
+#include <string.h>
 
 #include "lista.h"
 #include "ler.h"
-
-#define CARACTERES 1024
 
 void ler_arquivo(FILE *arq, lista_t* l){
 
@@ -14,10 +13,16 @@ void ler_arquivo(FILE *arq, lista_t* l){
     size_t bufsize = 0;
     ssize_t characters;
 
-    while ((characters = getline(&buffer, &bufsize, arq)) != -1)
+    while ((characters = getline(&buffer, &bufsize, arq)) != -1){
+        // Remove o caractere de nova linha (se existir)
+        size_t len = strcspn(buffer, "\n");
+        if (len > 0) {
+            buffer[len] = '\0';  // Substitui o '\n' pelo caractere nulo
+        }
+        printf("tarefas: %s\n", buffer);
         adiciona_ordem_lista(l, buffer);
+    }
 
     free(buffer);
     fclose(arq);
-
 }

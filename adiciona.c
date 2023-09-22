@@ -1,9 +1,6 @@
-#include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
-
 #include "lista.h"
-#include "adiciona.h"
 
 char *inputString(FILE* fp, size_t size){
 //The size is extended by the input with the value of the provisional
@@ -32,9 +29,9 @@ void adiciona_tarefas(FILE* arquivo_tarefas, lista_t* l){
 
     m = inputString(stdin, 10);
 
-    adiciona_ordem_lista(l, m);
+    if (m[0] != '\0' && m[0] != '\n')
+        adiciona_ordem_lista(l, m);
 
     free(m);
 
 }
-
