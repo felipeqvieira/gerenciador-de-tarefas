@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
+
 #include "lista.h"
+#include "adiciona.h"
 
 char *inputString(FILE* fp, size_t size){
 //The size is extended by the input with the value of the provisional
