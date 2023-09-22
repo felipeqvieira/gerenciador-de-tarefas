@@ -58,7 +58,10 @@
   "C_Cpp_Runner.showCompilationTime": false,
   "C_Cpp_Runner.useLinkTimeOptimization": false,
   "files.associations": {
-    "adiciona.h": "c"
+    "adiciona.h": "c",
+    "ler.h": "c",
+    "stdlib.h": "c",
+    "types.h": "c"
   },
   "C_Cpp.errorSquiggles": "enabled"
 }

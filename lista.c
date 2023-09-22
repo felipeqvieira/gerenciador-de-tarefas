@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+
 #include "lista.h"
 
 #define STRING_SIZE 1024
@@ -28,6 +29,8 @@ lista_t *cria_lista(){
 
 void printa_lista(lista_t *l){
 
+    int i = 1;
+
     /* verifica se ha elementos */
     if (l->Primeiro != NULL){
         nodo_lista_t * aux;
@@ -35,10 +38,14 @@ void printa_lista(lista_t *l){
         
         /* se tiver, vai varrendo e dando free com aux */
         while (aux != NULL){
-            
-            printf("%s\n", aux->dado);
+
+            if(aux->concluido == 1)
+                printf("%d: (concluido) %s\n",i, aux->dado);
+            else
+                printf("%d: %s\n",i, aux->dado);
 
             aux = aux->prox;
+            i++;
 
         }
     }
@@ -82,8 +89,8 @@ int adiciona_ordem_lista(lista_t *l, char* elemento){
 
     /* aloca novo nodo */
     novo = malloc(sizeof(nodo_lista_t));
-    novo->dado = malloc(sizeof(STRING_SIZE));
-    novo->concluido = malloc(sizeof(int));
+    novo->dado = malloc(sizeof(char)*STRING_SIZE);
+    novo->concluido = 0;
 
     /* verificacao */
     if (novo == NULL){
@@ -92,9 +99,7 @@ int adiciona_ordem_lista(lista_t *l, char* elemento){
     }
 
     /* nodo recebe o elemento */
-    novo->dado = elemento;
-
-    novo->concluido = 0;
+    strcpy(novo->dado, elemento);
 
     /* indica prox como null*/
     novo->prox = NULL;
@@ -111,19 +116,19 @@ int adiciona_ordem_lista(lista_t *l, char* elemento){
     /* se ha elemento(s) */
     else{
         /* ordenacao */
-        if(novo->dado[0] < l->Primeiro->dado[0]){
+        //if(novo->dado[0] < l->Primeiro->dado[0]){
 
-            novo->prox = l->Primeiro;
-            l->Primeiro = novo;
-            l->tamanho++;
-            return 1;
+            //novo->prox = l->Primeiro;
+            //l->Primeiro = novo;
+            //l->tamanho++;
+            //return 1;
 
-        }else if(novo->dado[0] > l->Primeiro->dado[0]){
+        ///}else if(novo->dado[0] > l->Primeiro->dado[0]){
 
             nodo_lista_t *aux;
             aux = l->Primeiro;
 
-            while (aux->prox != NULL && aux->prox->dado[0] < novo->dado[0])
+            while (aux->prox != NULL /*&& aux->prox->dado[0] < novo->dado[0]*/)
                 aux = aux->prox;
 
             novo->prox = aux->prox;
@@ -132,7 +137,7 @@ int adiciona_ordem_lista(lista_t *l, char* elemento){
             l->tamanho++;
 
             return 1;
-        }
+        //}
     }
 
     return 0;

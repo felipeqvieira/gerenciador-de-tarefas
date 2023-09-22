@@ -1,10 +1,13 @@
 #include <stdio.h>
+#include <stdlib.h>
+
 #include "lista.h"
 #include "adiciona.h"
 #include "conclui.h"
 #include "desfaz.h"
 #include "remove.h"
 #include "exibe.h"
+#include "ler.h"
 
 #define STRING_SIZE 1024
 
@@ -22,6 +25,8 @@ int main(int argc, char **argv){
 
     char *nome_arquivo = malloc(sizeof(STRING_SIZE));
 
+    nome_arquivo = argv[1];
+
     FILE *arquivo_tarefas = fopen(nome_arquivo, "r");
 
     if (! arquivo_tarefas){
@@ -29,7 +34,7 @@ int main(int argc, char **argv){
         arquivo_tarefas = fopen(nome_arquivo, "w");
     }
     else{
-        ler_arquivo(arquivo_tarefas);
+        ler_arquivo(arquivo_tarefas, l);
     }
 
     while(saida != 0){
@@ -43,32 +48,36 @@ int main(int argc, char **argv){
         printf("5. Exibir Tarefas\n");
         printf("\n\n===========================================\n\n");
 
-        scanf("%d", option);
+        scanf("%d", &option);
 
         switch(option){
 
-            case '0':
+            case 0:
                 saida = 0;
                 break;
         
-            case '1':
+            case 1:
                 //adiciona
                 adiciona_tarefas(arquivo_tarefas, l);
                 break;
             
-            case '2':
+            case 2:
                 //remove
                 break;
             
-            case '3':
+            case 3:
                 //concluida 
+                int n;
+                printf("Digite o numero da tarefa:\n");
+                scanf("%d", &n);
+                conclui_tarefa(l, n);
                 break;
 
-            case '4':
+            case 4:
                 //desfazer
                 break;
 
-            case '5':
+            case 5:
                 //exibir 
                 exibir_tarefas(l);
                 break;

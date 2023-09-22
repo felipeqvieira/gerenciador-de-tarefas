@@ -2,7 +2,9 @@
 #include <stdlib.h>
 #include <sys/types.h>
 #include <unistd.h>
+
 #include "lista.h"
+#include "ler.h"
 
 #define CARACTERES 1024
 
