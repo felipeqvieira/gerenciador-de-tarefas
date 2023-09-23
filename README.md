@@ -11,4 +11,4 @@ Assim sendo, o usuário é capaz, através de um menu, de fazer as seguintes alt
 - Atualizar a lista, removendo as já concluídas e atualizando as restantes. Cria um novo arquivo de tarefas com as que ainda não foram feitas. (Já é feito no final mesmo que o usuário não escolha a opção durante a execução do programa).
 - Exibir as tarefas.
 
-Para sua criação, foi usada uma lista encadaeada ordenada pelo primeiro caractere de cada tarefa.
+Para sua criação, foi usada uma lista encadeada ordenada pelo primeiro caractere de cada tarefa.
