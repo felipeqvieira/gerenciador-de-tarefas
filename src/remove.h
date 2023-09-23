@@ -1,0 +1,1 @@
+void remove_lista(lista_t *l, int n);

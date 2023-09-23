@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "menu.h"
 #include "lista.h"
 #include "adiciona.h"
 #include "conclui.h"
@@ -20,6 +21,7 @@ int main(int argc, char **argv){
 
     int saida = -1;
     int option = -1;
+    int n = 0;
 
     int tam = sizeof(argv[1]);
 
@@ -37,18 +39,24 @@ int main(int argc, char **argv){
         ler_arquivo(arquivo_tarefas, l);
     }
 
-    while(saida != 0){
+    printf("\nSeja bem vindo ao gerenciador de tarefas!\n");
 
-        printf("\n\n===========================================\n\n");
-        printf("0. Sair\n");
-        printf("1. Adicionar Tarefa\n");
-        printf("2. Remover Tarefa\n");
-        printf("3. Marcar Tarefa como Concluida\n");
-        printf("4. Desmarcar Tarefa como Concluida\n");
-        printf("5. Exibir Tarefas\n");
-        printf("\n\n===========================================\n\n");
+    while(saida != 0){
+        
+        printf("\n\n\nMostrar menu?\n");
+        printf("1. Sim  2. Sair\n");
+        
+        scanf("%d", &n);
+        
+        if (n == 1)
+            menu();
+        else 
+            return 1;
+
 
         scanf("%d", &option);
+
+        system("clear");
 
         switch(option){
 
@@ -58,23 +66,44 @@ int main(int argc, char **argv){
         
             case 1:
                 //adiciona
-                adiciona_tarefas(arquivo_tarefas,l);
+                n = tamanho_lista(l);
+
+                printf("Escreva a tarefa: \n");
+                
+                while (tamanho_lista(l) != n+1){
+                    if (adiciona_tarefas(arquivo_tarefas,l) != 1)
+                        fprintf(stderr, "Erro ao adicionar tarefa");
+                }
                 break;
             
             case 2:
                 //remove
+                printf("Digite o numero da tarefa:\n");
+                
+                if(! scanf("%d", &n))
+                    printf("Erro ao inserir numero da tarefa\n");
+
+                remove_lista(l, n);
                 break;
             
             case 3:
                 //concluida 
-                int n;
                 printf("Digite o numero da tarefa:\n");
-                scanf("%d", &n);
+                
+                if(! scanf("%d", &n))
+                    printf("Erro ao inserir numero da tarefa\n");
+            
                 conclui_tarefa(l, n);
                 break;
 
             case 4:
                 //desfazer
+                printf("Digite o numero da tarefa:\n");
+                
+                if(! scanf("%d", &n))
+                    printf("Erro ao inserir numero da tarefa\n");
+            
+                desfaz_tarefa(l, n);
                 break;
 
             case 5:

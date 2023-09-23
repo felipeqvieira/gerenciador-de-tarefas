@@ -19,7 +19,6 @@ void ler_arquivo(FILE *arq, lista_t* l){
         if (len > 0) {
             buffer[len] = '\0';  // Substitui o '\n' pelo caractere nulo
         }
-        printf("tarefas: %s\n", buffer);
         adiciona_ordem_lista(l, buffer);
     }
 

@@ -1,13 +1,13 @@
 PROJ_NAME=gerenciador
  
 # .c files
-C_SOURCE=$(wildcard *.c)
+C_SOURCE=$(wildcard ./src/*.c)
  
 # .h files
-H_SOURCE=$(wildcard *.h)
+H_SOURCE=$(wildcard ./src/*.h)
  
 # Object files
-OBJ=$(C_SOURCE:.c=.o)
+OBJ=$(subst .c,.o,$(subst src,objects,$(C_SOURCE)))
  
 # Compiler
 CC=gcc
@@ -19,23 +19,30 @@ CC_FLAGS=-c         \
 #
 # Compilation and linking
 #
-all: $(PROJ_NAME)
+
+RM = rm -rf
+
+
+all: objFolder $(PROJ_NAME)
  
 $(PROJ_NAME): $(OBJ)
 		$(CC) -o $@ $^
  
-%.o: %.c %.h
+./objects/%.o: ./src/%.c ./src/%.h
 		$(CC) -o $@ $< $(CC_FLAGS) -lm
  
-main.o: main.c $(H_SOURCE)
+./objects/main.o: ./src/main.c $(H_SOURCE)
 		$(CC) -o $@ $< $(CC_FLAGS)
  
+objFolder:
+		@ mkdir -p objects
+
 clean:
 		@echo "Limpando sujeira ..."
 		@rm -f *~ *.bak
 
-purge:  clean
-		@echo "Limpando tudo ..."
-		@rm -f $(PROG) *.o core a.out gerenciador
+purge:  
+		@ $(RM) ./objects/*.o $(PROJ_NAME) *~
+		@ rmdir objects
 		
-.PHONY: all
+.PHONY: all purge
