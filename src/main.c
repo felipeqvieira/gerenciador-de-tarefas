@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "menu.h"
 #include "lista.h"
@@ -28,7 +29,7 @@ int main(int argc, char **argv){
 
     char *nome_arquivo = malloc(sizeof(tam));
 
-    nome_arquivo = argv[1];
+    strcpy(nome_arquivo, argv[1]);
 
     FILE *arquivo_tarefas = fopen(nome_arquivo, "r");
 
@@ -72,7 +73,7 @@ int main(int argc, char **argv){
                 printf("Escreva a tarefa: \n");
                 
                 while (tamanho_lista(l) != n+1){
-                    if (adiciona_tarefas(arquivo_tarefas,l) != 1)
+                    if (adiciona_tarefas(l) != 1)
                         fprintf(stderr, "Erro ao adicionar tarefa");
                 }
                 break;
@@ -119,6 +120,12 @@ int main(int argc, char **argv){
         }
 
     }
+
+    atualiza(l);
+
+    destroi_lista(l);
+
+    free(nome_arquivo);
 
     return 1;
 }

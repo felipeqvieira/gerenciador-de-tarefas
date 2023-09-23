@@ -30,7 +30,7 @@ char *inputString() {
     return str;
 }
 
-int adiciona_tarefas(FILE* arquivo_tarefas, lista_t* l){
+int adiciona_tarefas(lista_t* l){
     
     char *m = inputString();
     
