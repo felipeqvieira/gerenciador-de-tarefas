@@ -1,6 +1,6 @@
 # gerenciador-de-tarefas
  
-O programa recebe um arquivo texto com uma lista de tarefas em cada linha e organiza essas tarefas em uma lista ordenada. 
+O programa recebe um arquivo texto com uma lista de tarefas em cada linha e as organiza em uma lista ordenada. 
 
 Assim sendo, o usuário é capaz, através de um menu, de fazer as seguintes alterações:
 
