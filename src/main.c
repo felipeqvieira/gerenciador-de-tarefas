@@ -9,6 +9,7 @@
 #include "remove.h"
 #include "exibe.h"
 #include "ler.h"
+#include "atualiza.h"
 
 int main(int argc, char **argv){
 
@@ -109,6 +110,10 @@ int main(int argc, char **argv){
             case 5:
                 //exibir 
                 exibir_tarefas(l);
+                break;
+
+            case 6:
+                atualiza(l);
                 break;
 
         }

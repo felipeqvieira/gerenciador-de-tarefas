@@ -34,6 +34,6 @@ void remove_lista(lista_t *l, int n){
         free(aux->dado);
         free(aux);
 
-        return ;
+        return;
 
 }

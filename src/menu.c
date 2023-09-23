@@ -9,6 +9,7 @@ void menu(){
     printf("3. Marcar Tarefa como Concluida\n");
     printf("4. Desmarcar Tarefa como Concluida\n");
     printf("5. Exibir Tarefas\n");
+    printf("6. Atualizar Lista de Tarefas\n");
     printf("\n\n===========================================\n\n");
 
 }

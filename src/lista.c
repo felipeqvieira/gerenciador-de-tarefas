@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include <ctype.h>
 
 #include "lista.h"
 
@@ -81,63 +82,68 @@ lista_t * destroi_lista(lista_t *l){
 }
 
 
-/* funcao para inserir numero de forma ordenada*/
-int adiciona_ordem_lista(lista_t *l, char* elemento){
-
+int adiciona_ordem_lista(lista_t *l, char* elemento) {
     /* cria novo nodo */
     nodo_lista_t *novo;
 
     /* aloca novo nodo */
     novo = malloc(sizeof(nodo_lista_t));
-    novo->dado = malloc(sizeof(char)*STRING_SIZE);
+    novo->dado = malloc(sizeof(char) * STRING_SIZE);
     novo->concluido = 0;
 
-    /* verificacao */
-    if (novo == NULL){
+    /* verificação de alocação de memória */
+    if (novo == NULL) {
         printf("Erro de alocacao de memoria!\n");
         return 0;
     }
 
-    /* nodo recebe o elemento */
+    /* copia o elemento para o novo nodo */
     strcpy(novo->dado, elemento);
 
-    /* indica prox como null*/
+    /* indica prox como null */
     novo->prox = NULL;
 
-    /* se nao ha elementos */
-    if(l->Primeiro == NULL){
-
+    /* se não há elementos */
+    if (l->Primeiro == NULL) {
         novo->prox = l->Primeiro;
         l->Primeiro = novo;
         l->tamanho++;
         return 1;
+    } else {
+        nodo_lista_t *atual = l->Primeiro;
+        nodo_lista_t *anterior = NULL;
 
-    }
-    /* se ha elemento(s) */
-    else{
-        /* ordenacao */
-        //if(novo->dado[0] < l->Primeiro->dado[0]){
+        if(novo->dado[0] >= 97 && novo->dado[0] <= 122){
+            novo->dado[0] = novo->dado[0] - 32;
+        }
 
-            //novo->prox = l->Primeiro;
-            //l->Primeiro = novo;
-            //l->tamanho++;
-            //return 1;
+        if(atual->dado[0] >= 97 && atual->dado[0] <= 122){
+            atual->dado[0] = atual->dado[0] - 32;
+        }
 
-        ///}else if(novo->dado[0] > l->Primeiro->dado[0]){
+        if(! toupper(atual->dado[0])){
+            fprintf(stderr, "Erro na letra inicial\n");
+        }
 
-            nodo_lista_t *aux;
-            aux = l->Primeiro;
+        /* Compare as strings e encontre a posição correta */
+        while (atual != NULL && strcmp(novo->dado, atual->dado) > 0) {
+            anterior = atual;
+            atual = atual->prox;
+        }
 
-            while (aux->prox != NULL /*&& aux->prox->dado[0] < novo->dado[0]*/)
-                aux = aux->prox;
+        /* Insira o novo nodo na posição correta */
+        if (anterior == NULL) {
+            /* Inserir no início da lista */
+            novo->prox = l->Primeiro;
+            l->Primeiro = novo;
+        } else {
+            /* Inserir após o anterior */
+            anterior->prox = novo;
+            novo->prox = atual;
+        }
 
-            novo->prox = aux->prox;
-            aux->prox = novo;
-
-            l->tamanho++;
-
-            return 1;
-        //}
+        l->tamanho++;
+        return 1;
     }
 
     return 0;

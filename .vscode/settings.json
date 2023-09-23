@@ -62,7 +62,8 @@
     "ler.h": "c",
     "stdlib.h": "c",
     "types.h": "c",
-    "lista.h": "c"
+    "lista.h": "c",
+    "atualiza.h": "c"
   },
   "C_Cpp.errorSquiggles": "enabled"
 }
