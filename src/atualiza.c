@@ -6,8 +6,6 @@
 #include "atualiza.h"
 
 void atualiza(lista_t *l, char *nome_arquivo) {
-
-    puts(nome_arquivo);
     
     FILE *arquivo_saida = fopen(nome_arquivo, "w");
 
