@@ -25,17 +25,11 @@ int main(int argc, char **argv){
     int option = -1;
     int n = 0;
 
-    int tam = sizeof(argv[1]);
-
-    char *nome_arquivo = malloc(sizeof(tam));
-
-    strcpy(nome_arquivo, argv[1]);
-
-    FILE *arquivo_tarefas = fopen(nome_arquivo, "r");
+    FILE *arquivo_tarefas = fopen(argv[1], "r");
 
     if (! arquivo_tarefas){
         printf("Gerenciador inexistente. Criando um novo...\n");
-        arquivo_tarefas = fopen(nome_arquivo, "w");
+        arquivo_tarefas = fopen(argv[1], "w");
     }
     else{
         ler_arquivo(arquivo_tarefas, l);
@@ -124,8 +118,6 @@ int main(int argc, char **argv){
     atualiza(l);
 
     destroi_lista(l);
-
-    free(nome_arquivo);
 
     return 1;
 }
