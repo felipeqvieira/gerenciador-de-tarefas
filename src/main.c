@@ -108,14 +108,14 @@ int main(int argc, char **argv){
                 break;
 
             case 6:
-                atualiza(l);
+                atualiza(l, argv[1]);
                 break;
 
         }
 
     }
 
-    atualiza(l);
+    atualiza(l, argv[1]);
 
     destroi_lista(l);
 

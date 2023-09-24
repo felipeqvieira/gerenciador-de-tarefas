@@ -1,1 +1,1 @@
-void atualiza(lista_t *l);
+void atualiza(lista_t *l, char* nome_arquivo);

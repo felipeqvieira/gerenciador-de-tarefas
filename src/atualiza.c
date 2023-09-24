@@ -5,9 +5,11 @@
 #include "remove.h"
 #include "atualiza.h"
 
-void atualiza(lista_t *l) {
+void atualiza(lista_t *l, char *nome_arquivo) {
+
+    puts(nome_arquivo);
     
-    FILE *arquivo_saida = fopen("lista-de-tarefas.txt", "w");
+    FILE *arquivo_saida = fopen(nome_arquivo, "w");
 
     if (arquivo_saida == NULL) {
         perror("Erro ao abrir o arquivo de saída");
@@ -16,6 +18,7 @@ void atualiza(lista_t *l) {
 
     nodo_lista_t *aux = l->Primeiro;
     int i = 1;
+
 
     while (aux != NULL) {
         if (aux->concluido == 1) {
